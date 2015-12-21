@@ -1,0 +1,538 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DDDD042E1C285047009D05C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD042D1C285047009D05C0 /* main.m */; };
+		DDDD04311C285047009D05C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD04301C285047009D05C0 /* AppDelegate.m */; };
+		DDDD04341C285047009D05C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD04331C285047009D05C0 /* ViewController.m */; };
+		DDDD04371C285047009D05C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDDD04351C285047009D05C0 /* Main.storyboard */; };
+		DDDD043A1C285047009D05C0 /* XZCalendar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DDDD04381C285047009D05C0 /* XZCalendar.xcdatamodeld */; };
+		DDDD043C1C285047009D05C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDDD043B1C285047009D05C0 /* Assets.xcassets */; };
+		DDDD043F1C285047009D05C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDDD043D1C285047009D05C0 /* LaunchScreen.storyboard */; };
+		DDDD044A1C285048009D05C0 /* XZCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD04491C285048009D05C0 /* XZCalendarTests.m */; };
+		DDDD04551C285048009D05C0 /* XZCalendarUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD04541C285048009D05C0 /* XZCalendarUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DDDD04461C285048009D05C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDDD04211C285047009D05C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DDDD04281C285047009D05C0;
+			remoteInfo = XZCalendar;
+		};
+		DDDD04511C285048009D05C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDDD04211C285047009D05C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DDDD04281C285047009D05C0;
+			remoteInfo = XZCalendar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DDDD04291C285047009D05C0 /* XZCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XZCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDDD042D1C285047009D05C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DDDD042F1C285047009D05C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DDDD04301C285047009D05C0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DDDD04321C285047009D05C0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		DDDD04331C285047009D05C0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DDDD04361C285047009D05C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DDDD04391C285047009D05C0 /* XZCalendar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XZCalendar.xcdatamodel; sourceTree = "<group>"; };
+		DDDD043B1C285047009D05C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DDDD043E1C285047009D05C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DDDD04401C285047009D05C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDDD04451C285048009D05C0 /* XZCalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XZCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDDD04491C285048009D05C0 /* XZCalendarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZCalendarTests.m; sourceTree = "<group>"; };
+		DDDD044B1C285048009D05C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDDD04501C285048009D05C0 /* XZCalendarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XZCalendarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDDD04541C285048009D05C0 /* XZCalendarUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZCalendarUITests.m; sourceTree = "<group>"; };
+		DDDD04561C285048009D05C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DDDD04261C285047009D05C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDDD04421C285048009D05C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDDD044D1C285048009D05C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DDDD04201C285047009D05C0 = {
+			isa = PBXGroup;
+			children = (
+				DDDD042B1C285047009D05C0 /* XZCalendar */,
+				DDDD04481C285048009D05C0 /* XZCalendarTests */,
+				DDDD04531C285048009D05C0 /* XZCalendarUITests */,
+				DDDD042A1C285047009D05C0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DDDD042A1C285047009D05C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DDDD04291C285047009D05C0 /* XZCalendar.app */,
+				DDDD04451C285048009D05C0 /* XZCalendarTests.xctest */,
+				DDDD04501C285048009D05C0 /* XZCalendarUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DDDD042B1C285047009D05C0 /* XZCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				DDDD042F1C285047009D05C0 /* AppDelegate.h */,
+				DDDD04301C285047009D05C0 /* AppDelegate.m */,
+				DDDD04321C285047009D05C0 /* ViewController.h */,
+				DDDD04331C285047009D05C0 /* ViewController.m */,
+				DDDD04351C285047009D05C0 /* Main.storyboard */,
+				DDDD043B1C285047009D05C0 /* Assets.xcassets */,
+				DDDD043D1C285047009D05C0 /* LaunchScreen.storyboard */,
+				DDDD04401C285047009D05C0 /* Info.plist */,
+				DDDD04381C285047009D05C0 /* XZCalendar.xcdatamodeld */,
+				DDDD042C1C285047009D05C0 /* Supporting Files */,
+			);
+			path = XZCalendar;
+			sourceTree = "<group>";
+		};
+		DDDD042C1C285047009D05C0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DDDD042D1C285047009D05C0 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DDDD04481C285048009D05C0 /* XZCalendarTests */ = {
+			isa = PBXGroup;
+			children = (
+				DDDD04491C285048009D05C0 /* XZCalendarTests.m */,
+				DDDD044B1C285048009D05C0 /* Info.plist */,
+			);
+			path = XZCalendarTests;
+			sourceTree = "<group>";
+		};
+		DDDD04531C285048009D05C0 /* XZCalendarUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DDDD04541C285048009D05C0 /* XZCalendarUITests.m */,
+				DDDD04561C285048009D05C0 /* Info.plist */,
+			);
+			path = XZCalendarUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DDDD04281C285047009D05C0 /* XZCalendar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDDD04591C285048009D05C0 /* Build configuration list for PBXNativeTarget "XZCalendar" */;
+			buildPhases = (
+				DDDD04251C285047009D05C0 /* Sources */,
+				DDDD04261C285047009D05C0 /* Frameworks */,
+				DDDD04271C285047009D05C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XZCalendar;
+			productName = XZCalendar;
+			productReference = DDDD04291C285047009D05C0 /* XZCalendar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DDDD04441C285048009D05C0 /* XZCalendarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDDD045C1C285048009D05C0 /* Build configuration list for PBXNativeTarget "XZCalendarTests" */;
+			buildPhases = (
+				DDDD04411C285048009D05C0 /* Sources */,
+				DDDD04421C285048009D05C0 /* Frameworks */,
+				DDDD04431C285048009D05C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DDDD04471C285048009D05C0 /* PBXTargetDependency */,
+			);
+			name = XZCalendarTests;
+			productName = XZCalendarTests;
+			productReference = DDDD04451C285048009D05C0 /* XZCalendarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DDDD044F1C285048009D05C0 /* XZCalendarUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDDD045F1C285048009D05C0 /* Build configuration list for PBXNativeTarget "XZCalendarUITests" */;
+			buildPhases = (
+				DDDD044C1C285048009D05C0 /* Sources */,
+				DDDD044D1C285048009D05C0 /* Frameworks */,
+				DDDD044E1C285048009D05C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DDDD04521C285048009D05C0 /* PBXTargetDependency */,
+			);
+			name = XZCalendarUITests;
+			productName = XZCalendarUITests;
+			productReference = DDDD04501C285048009D05C0 /* XZCalendarUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DDDD04211C285047009D05C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = LXZ;
+				TargetAttributes = {
+					DDDD04281C285047009D05C0 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+					DDDD04441C285048009D05C0 = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = DDDD04281C285047009D05C0;
+					};
+					DDDD044F1C285048009D05C0 = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = DDDD04281C285047009D05C0;
+					};
+				};
+			};
+			buildConfigurationList = DDDD04241C285047009D05C0 /* Build configuration list for PBXProject "XZCalendar" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DDDD04201C285047009D05C0;
+			productRefGroup = DDDD042A1C285047009D05C0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DDDD04281C285047009D05C0 /* XZCalendar */,
+				DDDD04441C285048009D05C0 /* XZCalendarTests */,
+				DDDD044F1C285048009D05C0 /* XZCalendarUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DDDD04271C285047009D05C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDDD043F1C285047009D05C0 /* LaunchScreen.storyboard in Resources */,
+				DDDD043C1C285047009D05C0 /* Assets.xcassets in Resources */,
+				DDDD04371C285047009D05C0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDDD04431C285048009D05C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDDD044E1C285048009D05C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DDDD04251C285047009D05C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDDD04341C285047009D05C0 /* ViewController.m in Sources */,
+				DDDD04311C285047009D05C0 /* AppDelegate.m in Sources */,
+				DDDD042E1C285047009D05C0 /* main.m in Sources */,
+				DDDD043A1C285047009D05C0 /* XZCalendar.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDDD04411C285048009D05C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDDD044A1C285048009D05C0 /* XZCalendarTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDDD044C1C285048009D05C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDDD04551C285048009D05C0 /* XZCalendarUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DDDD04471C285048009D05C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DDDD04281C285047009D05C0 /* XZCalendar */;
+			targetProxy = DDDD04461C285048009D05C0 /* PBXContainerItemProxy */;
+		};
+		DDDD04521C285048009D05C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DDDD04281C285047009D05C0 /* XZCalendar */;
+			targetProxy = DDDD04511C285048009D05C0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DDDD04351C285047009D05C0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DDDD04361C285047009D05C0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DDDD043D1C285047009D05C0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DDDD043E1C285047009D05C0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DDDD04571C285048009D05C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DDDD04581C285048009D05C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DDDD045A1C285048009D05C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = XZCalendar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.self.XZCalendar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DDDD045B1C285048009D05C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = XZCalendar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.self.XZCalendar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DDDD045D1C285048009D05C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = XZCalendarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.self.XZCalendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XZCalendar.app/XZCalendar";
+			};
+			name = Debug;
+		};
+		DDDD045E1C285048009D05C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = XZCalendarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.self.XZCalendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XZCalendar.app/XZCalendar";
+			};
+			name = Release;
+		};
+		DDDD04601C285048009D05C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = XZCalendarUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.self.XZCalendarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = XZCalendar;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		DDDD04611C285048009D05C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = XZCalendarUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.self.XZCalendarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = XZCalendar;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DDDD04241C285047009D05C0 /* Build configuration list for PBXProject "XZCalendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDDD04571C285048009D05C0 /* Debug */,
+				DDDD04581C285048009D05C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDDD04591C285048009D05C0 /* Build configuration list for PBXNativeTarget "XZCalendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDDD045A1C285048009D05C0 /* Debug */,
+				DDDD045B1C285048009D05C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DDDD045C1C285048009D05C0 /* Build configuration list for PBXNativeTarget "XZCalendarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDDD045D1C285048009D05C0 /* Debug */,
+				DDDD045E1C285048009D05C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DDDD045F1C285048009D05C0 /* Build configuration list for PBXNativeTarget "XZCalendarUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDDD04601C285048009D05C0 /* Debug */,
+				DDDD04611C285048009D05C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DDDD04381C285047009D05C0 /* XZCalendar.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DDDD04391C285047009D05C0 /* XZCalendar.xcdatamodel */,
+			);
+			currentVersion = DDDD04391C285047009D05C0 /* XZCalendar.xcdatamodel */;
+			path = XZCalendar.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = DDDD04211C285047009D05C0 /* Project object */;
+}
