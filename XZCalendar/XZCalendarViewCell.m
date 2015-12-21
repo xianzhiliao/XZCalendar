@@ -11,17 +11,15 @@
 
 @implementation XZCalendarViewCell
 
-- (instancetype)init
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    if (self = [super init]) {
+    if (self = [super initWithFrame:frame]) {
         self.dateLabel = ({
             UILabel *dateLabel = [UILabel new];
-            dateLabel.backgroundColor = [UIColor redColor];
             dateLabel;
         });
         self.reminderLabel = ({
             UILabel *reminderLabel = [UILabel new];
-            reminderLabel.backgroundColor = [UIColor greenColor];
             reminderLabel;
         });
         UIStackView *stackView = ({
@@ -33,7 +31,7 @@
             stackView.spacing = 8;
             [self.contentView addSubview:stackView];
             [stackView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self.contentView);
+                make.center.equalTo(self.contentView);
             }];
             stackView;
         });

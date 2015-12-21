@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  CalendarDemo
+//  XZCalendar
 //
 //  Created by xianzhiliao on 15/12/18.
 //  Copyright © 2015年 Putao. All rights reserved.
@@ -35,6 +35,7 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
         collectionView.dataSource = self;
         //注册Cell，必须要有
         [collectionView registerClass:[XZCalendarViewCell class] forCellWithReuseIdentifier:[XZCalendarViewCell cellIdentifier]];
+        collectionView.backgroundColor = [UIColor whiteColor];
         collectionView.opaque = NO;
         [self.view addSubview:collectionView];
         [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -70,7 +71,21 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
 {
     static NSString *identifier;
     identifier = [XZCalendarViewCell cellIdentifier];
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    XZCalendarViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    cell.dateLabel.text = [NSString stringWithFormat:@"%@",@(indexPath.item + 1)];
+    cell.dateLabel.textAlignment = NSTextAlignmentCenter;
+    cell.reminderLabel.textAlignment = NSTextAlignmentCenter;
+    if (indexPath.item % 2 == 0) {
+        cell.hidden = YES;
+        cell.reminderLabel.hidden = YES;
+    }
+    else
+    {
+        cell.hidden = NO;
+        cell.reminderLabel.hidden = NO;
+        cell.reminderLabel.text = @"reminder";
+    }
+    
     return cell;
 }
 
@@ -104,6 +119,9 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     XZCalendarViewCell * cell = (XZCalendarViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    cell.contentView.backgroundColor = [UIColor greenColor];
+    cell.layer.cornerRadius = 30;
+    cell.layer.masksToBounds = YES;
     
     NSLog(@"text=====%@",cell.dateLabel.text);
     NSLog(@"item======%ld",indexPath.item);
@@ -117,12 +135,12 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
 }
 
 // 设置是否高亮
-- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    __kindof UICollectionViewCell * cell = [collectionView cellForItemAtIndexPath:indexPath];
-    if (cell) {
-        
-    }
-}
+//- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    __kindof UICollectionViewCell * cell = [collectionView cellForItemAtIndexPath:indexPath];
+//    if (cell) {
+//        
+//    }
+//}
 
 @end

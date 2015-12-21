@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7FDE91886BABB58E925641F /* libPods-XZCalendar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE4EDCB73A7ADC3608D325A1 /* libPods-XZCalendar.a */; };
 		DDDD042E1C285047009D05C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD042D1C285047009D05C0 /* main.m */; };
 		DDDD04311C285047009D05C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD04301C285047009D05C0 /* AppDelegate.m */; };
-		DDDD04341C285047009D05C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD04331C285047009D05C0 /* ViewController.m */; };
 		DDDD04371C285047009D05C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDDD04351C285047009D05C0 /* Main.storyboard */; };
 		DDDD043A1C285047009D05C0 /* XZCalendar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DDDD04381C285047009D05C0 /* XZCalendar.xcdatamodeld */; };
 		DDDD043C1C285047009D05C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDDD043B1C285047009D05C0 /* Assets.xcassets */; };
 		DDDD043F1C285047009D05C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDDD043D1C285047009D05C0 /* LaunchScreen.storyboard */; };
 		DDDD044A1C285048009D05C0 /* XZCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD04491C285048009D05C0 /* XZCalendarTests.m */; };
 		DDDD04551C285048009D05C0 /* XZCalendarUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD04541C285048009D05C0 /* XZCalendarUITests.m */; };
+		DDDD046A1C28506B009D05C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD04631C28506B009D05C0 /* ViewController.m */; settings = {ASSET_TAGS = (); }; };
+		DDDD046B1C28506B009D05C0 /* XZCalendarBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD04651C28506B009D05C0 /* XZCalendarBrain.m */; settings = {ASSET_TAGS = (); }; };
+		DDDD046C1C28506B009D05C0 /* XZCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD04671C28506B009D05C0 /* XZCalendarView.m */; settings = {ASSET_TAGS = (); }; };
+		DDDD046D1C28506B009D05C0 /* XZCalendarViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD04691C28506B009D05C0 /* XZCalendarViewCell.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,12 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1EA1C6912D40BA3625BDC2F5 /* Pods-XZCalendar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XZCalendar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XZCalendar/Pods-XZCalendar.debug.xcconfig"; sourceTree = "<group>"; };
+		CBBE516B2FD490C3CBE2BF81 /* Pods-XZCalendar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XZCalendar.release.xcconfig"; path = "Pods/Target Support Files/Pods-XZCalendar/Pods-XZCalendar.release.xcconfig"; sourceTree = "<group>"; };
 		DDDD04291C285047009D05C0 /* XZCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XZCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDDD042D1C285047009D05C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DDDD042F1C285047009D05C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DDDD04301C285047009D05C0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DDDD04321C285047009D05C0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DDDD04331C285047009D05C0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		DDDD04361C285047009D05C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DDDD04391C285047009D05C0 /* XZCalendar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XZCalendar.xcdatamodel; sourceTree = "<group>"; };
 		DDDD043B1C285047009D05C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,6 +57,15 @@
 		DDDD04501C285048009D05C0 /* XZCalendarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XZCalendarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDDD04541C285048009D05C0 /* XZCalendarUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZCalendarUITests.m; sourceTree = "<group>"; };
 		DDDD04561C285048009D05C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDDD04621C28506B009D05C0 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		DDDD04631C28506B009D05C0 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DDDD04641C28506B009D05C0 /* XZCalendarBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZCalendarBrain.h; sourceTree = "<group>"; };
+		DDDD04651C28506B009D05C0 /* XZCalendarBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZCalendarBrain.m; sourceTree = "<group>"; };
+		DDDD04661C28506B009D05C0 /* XZCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZCalendarView.h; sourceTree = "<group>"; };
+		DDDD04671C28506B009D05C0 /* XZCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZCalendarView.m; sourceTree = "<group>"; };
+		DDDD04681C28506B009D05C0 /* XZCalendarViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZCalendarViewCell.h; sourceTree = "<group>"; };
+		DDDD04691C28506B009D05C0 /* XZCalendarViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZCalendarViewCell.m; sourceTree = "<group>"; };
+		EE4EDCB73A7ADC3608D325A1 /* libPods-XZCalendar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XZCalendar.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7FDE91886BABB58E925641F /* libPods-XZCalendar.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +94,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6AF1D62BE6F721FE0AD252E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE4EDCB73A7ADC3608D325A1 /* libPods-XZCalendar.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C6558FF82FC9D92BDEB99D48 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1EA1C6912D40BA3625BDC2F5 /* Pods-XZCalendar.debug.xcconfig */,
+				CBBE516B2FD490C3CBE2BF81 /* Pods-XZCalendar.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DDDD04201C285047009D05C0 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +118,8 @@
 				DDDD04481C285048009D05C0 /* XZCalendarTests */,
 				DDDD04531C285048009D05C0 /* XZCalendarUITests */,
 				DDDD042A1C285047009D05C0 /* Products */,
+				C6558FF82FC9D92BDEB99D48 /* Pods */,
+				6AF1D62BE6F721FE0AD252E1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,10 +136,16 @@
 		DDDD042B1C285047009D05C0 /* XZCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				DDDD04621C28506B009D05C0 /* ViewController.h */,
+				DDDD04631C28506B009D05C0 /* ViewController.m */,
+				DDDD04641C28506B009D05C0 /* XZCalendarBrain.h */,
+				DDDD04651C28506B009D05C0 /* XZCalendarBrain.m */,
+				DDDD04661C28506B009D05C0 /* XZCalendarView.h */,
+				DDDD04671C28506B009D05C0 /* XZCalendarView.m */,
+				DDDD04681C28506B009D05C0 /* XZCalendarViewCell.h */,
+				DDDD04691C28506B009D05C0 /* XZCalendarViewCell.m */,
 				DDDD042F1C285047009D05C0 /* AppDelegate.h */,
 				DDDD04301C285047009D05C0 /* AppDelegate.m */,
-				DDDD04321C285047009D05C0 /* ViewController.h */,
-				DDDD04331C285047009D05C0 /* ViewController.m */,
 				DDDD04351C285047009D05C0 /* Main.storyboard */,
 				DDDD043B1C285047009D05C0 /* Assets.xcassets */,
 				DDDD043D1C285047009D05C0 /* LaunchScreen.storyboard */,
@@ -150,9 +189,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DDDD04591C285048009D05C0 /* Build configuration list for PBXNativeTarget "XZCalendar" */;
 			buildPhases = (
+				18A64A4FA13B3E925B0AC01B /* Check Pods Manifest.lock */,
 				DDDD04251C285047009D05C0 /* Sources */,
 				DDDD04261C285047009D05C0 /* Frameworks */,
 				DDDD04271C285047009D05C0 /* Resources */,
+				665AC6B705CA00CF1E8702E1 /* Embed Pods Frameworks */,
+				C71490610716896FDC7A4472 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -268,14 +310,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		18A64A4FA13B3E925B0AC01B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		665AC6B705CA00CF1E8702E1 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XZCalendar/Pods-XZCalendar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C71490610716896FDC7A4472 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XZCalendar/Pods-XZCalendar-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DDDD04251C285047009D05C0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDDD04341C285047009D05C0 /* ViewController.m in Sources */,
 				DDDD04311C285047009D05C0 /* AppDelegate.m in Sources */,
+				DDDD046B1C28506B009D05C0 /* XZCalendarBrain.m in Sources */,
+				DDDD046C1C28506B009D05C0 /* XZCalendarView.m in Sources */,
+				DDDD046D1C28506B009D05C0 /* XZCalendarViewCell.m in Sources */,
 				DDDD042E1C285047009D05C0 /* main.m in Sources */,
+				DDDD046A1C28506B009D05C0 /* ViewController.m in Sources */,
 				DDDD043A1C285047009D05C0 /* XZCalendar.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +508,7 @@
 		};
 		DDDD045A1C285048009D05C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EA1C6912D40BA3625BDC2F5 /* Pods-XZCalendar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = XZCalendar/Info.plist;
@@ -426,6 +520,7 @@
 		};
 		DDDD045B1C285048009D05C0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBBE516B2FD490C3CBE2BF81 /* Pods-XZCalendar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = XZCalendar/Info.plist;
@@ -502,6 +597,7 @@
 				DDDD045B1C285048009D05C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DDDD045C1C285048009D05C0 /* Build configuration list for PBXNativeTarget "XZCalendarTests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +606,7 @@
 				DDDD045E1C285048009D05C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DDDD045F1C285048009D05C0 /* Build configuration list for PBXNativeTarget "XZCalendarUITests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +615,7 @@
 				DDDD04611C285048009D05C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
