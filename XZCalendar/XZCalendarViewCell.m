@@ -17,11 +17,13 @@
         self.dateLabel = ({
             UILabel *dateLabel = [UILabel new];
             dateLabel.textColor = [UIColor blackColor];
+            dateLabel.font = [UIFont systemFontOfSize:14.0];
             dateLabel.textAlignment = NSTextAlignmentCenter;
             dateLabel;
         });
         self.reminderLabel = ({
             UILabel *reminderLabel = [UILabel new];
+            reminderLabel.font = [UIFont systemFontOfSize:14.0];
             reminderLabel.textAlignment = NSTextAlignmentCenter;
             reminderLabel;
         });

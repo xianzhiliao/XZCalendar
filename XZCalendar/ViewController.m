@@ -17,7 +17,8 @@ const CGFloat KdayMargin = 8;
 
 @interface ViewController ()
 <
-UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
+UICollectionViewDataSource,
+UICollectionViewDelegateFlowLayout
 >
 // 日期大脑(进行时间比较等等)
 @property (nonatomic, strong) XZCalendarBrain *calendarBrain;
@@ -31,12 +32,8 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
 @property (nonatomic, assign) BOOL shouldShowHighLightDates;
 // 最后选中的indexPath
 @property (nonatomic, strong) NSIndexPath *lastSelectedIndexPath;
-
-
 @property (nonatomic, strong) UIView *weekDayHeaderView;
 @property (nonatomic, strong) UICollectionView *collectionView;
-
-
 
 @end
 
@@ -58,7 +55,7 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
     
     self.daySize = ({
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-        NSInteger avgSize = (screenWidth - 2 * Kmargin - 6 * KdayMargin) / 7;
+        CGFloat avgSize = (screenWidth - 2 * Kmargin - 6 * KdayMargin) / 7;
         CGSizeMake(avgSize, avgSize) ;
     });
     self.weekDayHeaderView = ({
@@ -76,14 +73,20 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
         UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
         flowLayout.minimumInteritemSpacing = KdayMargin;
+        flowLayout.itemSize = self.daySize;
+        flowLayout.sectionInset = UIEdgeInsetsMake(Kmargin, Kmargin, 0, Kmargin);
+        flowLayout.headerReferenceSize = CGSizeMake(30, 30);
         
         UICollectionView *collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         collectionView.delegate = self;
         collectionView.dataSource = self;
         //注册Cell，必须要有
         [collectionView registerClass:[XZCalendarViewCell class] forCellWithReuseIdentifier:[XZCalendarViewCell cellIdentifier]];
+        // 注册header
+        [collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:UICollectionElementKindSectionHeader];
+        
         collectionView.backgroundColor = [UIColor whiteColor];
-        collectionView.opaque = NO;
+//        collectionView.opaque = NO;
         [self.view addSubview:collectionView];
         [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(self.view);
@@ -96,6 +99,7 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
     [super didReceiveMemoryWarning];
     
 }
+
 #pragma mark - Private Method
 
 // 要展示所有月份的月份信息
@@ -212,19 +216,36 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
 {
     return self.monthFirstDateArray.count;
 }
-
-#pragma mark --UICollectionViewDelegateFlowLayout
-
-//定义每个Item 的大小
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    return self.daySize;
-}
-
-//定义每个UICollectionView 的 margin
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsMake(Kmargin, Kmargin, 0, Kmargin);
+    UICollectionReusableView *reusableview = nil;
+    if (kind == UICollectionElementKindSectionHeader){
+        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:UICollectionElementKindSectionHeader forIndexPath:indexPath];
+        // 偷懒没有重新定义一个视图，那就移除吧
+        for (UIView * view in headerView.subviews) {
+            [view removeFromSuperview];
+        }
+        UILabel *monthTitle = [UILabel new];
+        monthTitle.textAlignment = NSTextAlignmentLeft;
+        monthTitle.textColor = [UIColor purpleColor];
+        monthTitle.font = [UIFont systemFontOfSize:14];
+        [headerView addSubview:monthTitle];
+        [monthTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(headerView).offset(Kmargin);
+            make.right.equalTo(headerView).offset(-Kmargin);
+            make.centerY.equalTo(headerView);
+        }];
+        
+        NSDateFormatter *format = [[NSDateFormatter alloc] init];
+        [format setDateFormat:@"yyyy年MM月"];
+        XZCalendarViewMonthInfo *monthInfo = self.monthFirstDateArray[indexPath.section];
+        NSString *dateString = [format stringFromDate:monthInfo.monthFirstDate];
+        monthTitle.text = dateString;
+        
+        headerView.backgroundColor = [UIColor grayColor];
+        reusableview = headerView;
+    }
+    return reusableview;
 }
 
 #pragma mark --UICollectionViewDelegate
@@ -263,6 +284,7 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
 }
 
 #pragma mark - CalendarView Delegate
+// 设置头部视图
 
 // 设置是否高亮
 - (BOOL)setCellCanBeHighLight:(XZCalendarViewCell *)cell
