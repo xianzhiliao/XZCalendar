@@ -24,6 +24,7 @@ XZCalendarViewCellStyleMake(UIColor *cellHighlightColor){
 
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UILabel *reminderLabel;
+@property (nonatomic, strong) NSDate *currentDate;
 @property (nonatomic, assign) XZCalendarViewCellStyle style;
 + (NSString *)cellIdentifier;
 

@@ -10,6 +10,12 @@
 
 @interface ViewController : UIViewController
 
+// 要开始的日期
+@property (nonatomic, strong) NSDate *beginDate;
+// 要展示的月份
+@property (nonatomic, assign) NSInteger showMonthCount;
+// 默认选择的日期
+@property (nonatomic, strong) NSMutableArray<NSDate *> *highLightDates;
 
 @end
 

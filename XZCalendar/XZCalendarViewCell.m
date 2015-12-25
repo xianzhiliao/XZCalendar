@@ -16,10 +16,13 @@
     if (self = [super initWithFrame:frame]) {
         self.dateLabel = ({
             UILabel *dateLabel = [UILabel new];
+            dateLabel.textColor = [UIColor blackColor];
+            dateLabel.textAlignment = NSTextAlignmentCenter;
             dateLabel;
         });
         self.reminderLabel = ({
             UILabel *reminderLabel = [UILabel new];
+            reminderLabel.textAlignment = NSTextAlignmentCenter;
             reminderLabel;
         });
         UIStackView *stackView = ({
