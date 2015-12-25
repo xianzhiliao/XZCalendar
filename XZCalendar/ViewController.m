@@ -46,14 +46,6 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-#warning 配置
-    self.beginDate = ({
-        NSDate *date = [NSDate date];
-        date;
-    });
-    self.showMonthCount = 6;
-    self.highLightDates = @[[NSDate date]].mutableCopy;
-#warning end
     self.shouldShowHighLightDates = YES;
     self.lastSelectedIndexPath =({
         [NSIndexPath indexPathForItem:-1 inSection:-1];
@@ -100,7 +92,6 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
         collectionView;
     });
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
@@ -161,20 +152,6 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
     }];
     return weekDayHeaderView;
 }
-// 设置cell是否高亮的样式
-- (void)setCell:(XZCalendarViewCell *)cell isHighLight:(BOOL)isHighLight
-{
-    if (isHighLight) {
-        cell.contentView.backgroundColor = [UIColor greenColor];
-        cell.reminderLabel.hidden = NO;
-        cell.reminderLabel.text = @"提示";
-    }
-    else
-    {
-        cell.contentView.backgroundColor = [UIColor whiteColor];
-        cell.reminderLabel.hidden = YES;
-    }
-}
 // 判断是否当前高亮
 - (void)setCellCanBeHighLight:(XZCalendarViewCell *)cell indexPath:(NSIndexPath *)indexPath
 {
@@ -188,18 +165,10 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
             }
         }
     }
-}
-// 设置cell是否可选的样式
-- (void)setCellCanBeSelected:(XZCalendarViewCell *)cell
-{
-    // 可选
-    if ([XZCalendarBrain xzCalendar_compareDate:cell.currentDate withDate:self.beginDate] != NSOrderedAscending) {
-        cell.dateLabel.textColor = [UIColor blackColor];
-    }
-    // 不可选
-    else
+    // 扩展接口
+    if ([self setCellCanBeHighLight:cell])
     {
-        cell.dateLabel.textColor = [UIColor grayColor];
+        [self setCell:cell isHighLight:YES];
     }
 }
 
@@ -210,16 +179,19 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
     XZCalendarViewMonthInfo *monthInfo = self.monthFirstDateArray[section];
     return monthInfo.monthLength + monthInfo.monthBeginWeekDay;
 }
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier;
     identifier = [XZCalendarViewCell cellIdentifier];
     XZCalendarViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     XZCalendarViewMonthInfo *monthInfo = self.monthFirstDateArray[indexPath.section];
-    if (indexPath.item >= monthInfo.monthBeginWeekDay) {
-        cell.layer.cornerRadius = self.daySize.width / 2;
-        cell.layer.masksToBounds = YES;
+    if (indexPath.item < monthInfo.monthBeginWeekDay)
+    {
+        // 防止复用时为高亮
+        [self setCell:cell isHighLight:NO];
+        cell.dateLabel.text = @"";
+    }
+    else{
         // 是否为上次选中
         BOOL lastSelected = (indexPath == self.lastSelectedIndexPath);
         [self setCell:cell isHighLight:lastSelected];
@@ -234,22 +206,12 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
         [self setCellCanBeSelected:cell];
         cell.dateLabel.text = [NSString stringWithFormat:@"%@",@(indexPath.item + 1 - monthInfo.monthBeginWeekDay)];
     }
-    else
-    {
-        cell.dateLabel.text = @"";
-    }
     return cell;
 }
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return self.monthFirstDateArray.count;
 }
-
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//}
 
 #pragma mark --UICollectionViewDelegateFlowLayout
 
@@ -271,24 +233,25 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     XZCalendarViewMonthInfo *monthInfo = self.monthFirstDateArray[indexPath.section];
-    if (indexPath.item >= monthInfo.monthBeginWeekDay)
+    XZCalendarViewCell * cell = (XZCalendarViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    if (indexPath.item < monthInfo.monthBeginWeekDay) {
+        
+    }
+    else
     {
         // 设置的高亮日期不再显示
         self.shouldShowHighLightDates = NO;
         // 取消之前选中状态,设置当前为最后一次选中
-        XZCalendarViewCell * cell = (XZCalendarViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        
         if (self.lastSelectedIndexPath) {
             XZCalendarViewCell *lastSelectedCell = (XZCalendarViewCell *)[collectionView cellForItemAtIndexPath:self.lastSelectedIndexPath];
             [self setCell:lastSelectedCell isHighLight:NO];
         }
         self.lastSelectedIndexPath = indexPath;
         [self setCell:cell isHighLight:YES];
-        // 选中回调
-
+        [self setDidSelectedCell:cell];
     }
 }
-
-//返回这个UICollectionView是否可以被选择
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     XZCalendarViewCell * cell = (XZCalendarViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
@@ -296,13 +259,63 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
     if (!cell.currentDate) {
         return NO;
     }
+    return [self setCellCanBeSelected:cell];
+}
+
+#pragma mark - CalendarView Delegate
+
+// 设置是否高亮
+- (BOOL)setCellCanBeHighLight:(XZCalendarViewCell *)cell
+{
+    return NO;
+}
+// 设置cell是否高亮的样式
+- (void)setCell:(XZCalendarViewCell *)cell isHighLight:(BOOL)isHighLight
+{
+    if (isHighLight) {
+        cell.contentView.backgroundColor = [UIColor greenColor];
+        cell.reminderLabel.hidden = NO;
+        cell.reminderLabel.text = @"提示";
+    }
+    else
+    {
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        cell.reminderLabel.hidden = YES;
+    }
+}
+// 返回这个CalendarView是否可以被选择
+- (BOOL)setCellCanBeSelected:(XZCalendarViewCell *)cell
+{
+    // 可选
     if ([XZCalendarBrain xzCalendar_compareDate:cell.currentDate withDate:self.beginDate] != NSOrderedAscending) {
+        [self setCell:cell canSelected:YES];
         return YES;
     }
     // 不可选
     else
     {
+       [self setCell:cell canSelected:NO];
         return NO;
     }
 }
+// 设置cell是否可以被选中和不可以被选中的样式
+- (void)setCell:(XZCalendarViewCell *)cell canSelected:(BOOL)canSelected
+{
+    if (canSelected){
+        cell.dateLabel.textColor = [UIColor blackColor];
+    }
+    else
+    {
+         cell.dateLabel.textColor = [UIColor grayColor];
+    }
+}
+// 设置cell被选中
+- (void)setDidSelectedCell:(XZCalendarViewCell *)cell
+{
+    // 选中回调
+    if (self.calendarViewDateDidSelected) {
+        self.calendarViewDateDidSelected(cell.currentDate);
+    }
+}
+
 @end

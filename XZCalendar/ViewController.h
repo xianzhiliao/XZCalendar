@@ -16,6 +16,9 @@
 @property (nonatomic, assign) NSInteger showMonthCount;
 // 默认选择的日期
 @property (nonatomic, strong) NSMutableArray<NSDate *> *highLightDates;
+// 日期选择回调
+typedef void (^CalendarViewDateDidSelected)(NSDate *selectedDate);
+@property (nonatomic, copy) CalendarViewDateDidSelected calendarViewDateDidSelected;
 
 @end
 
