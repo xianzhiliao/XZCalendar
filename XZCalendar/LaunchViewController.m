@@ -64,7 +64,7 @@
     ViewController *vc = [ViewController new];
     vc.beginDate = [NSDate date];
     vc.showMonthCount = 6;
-    vc.highLightDates = @[self.curentDate].mutableCopy;
+    vc.defaultSelectedDates = @[self.curentDate].mutableCopy;
     vc.calendarViewDateDidSelected = ^(NSDate *selectedDate)
     {
         if (selectedDate) {

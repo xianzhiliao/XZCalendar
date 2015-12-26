@@ -29,7 +29,7 @@ UICollectionViewDelegateFlowLayout
 // 星期数组
 @property (nonatomic, strong) NSArray *weekDayNames;
 // 是否显示高亮日期
-@property (nonatomic, assign) BOOL shouldShowHighLightDates;
+@property (nonatomic, assign) BOOL shouldShowdefaultSelectedDates;
 // 最后选中的indexPath
 @property (nonatomic, strong) NSIndexPath *lastSelectedIndexPath;
 @property (nonatomic, strong) UIView *weekDayHeaderView;
@@ -43,7 +43,7 @@ UICollectionViewDelegateFlowLayout
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.shouldShowHighLightDates = YES;
+    self.shouldShowdefaultSelectedDates = YES;
     self.lastSelectedIndexPath =({
         [NSIndexPath indexPathForItem:-1 inSection:-1];
     });
@@ -159,20 +159,15 @@ UICollectionViewDelegateFlowLayout
 // 判断是否当前高亮
 - (void)setCellCanBeHighLight:(XZCalendarViewCell *)cell indexPath:(NSIndexPath *)indexPath
 {
-    if (self.highLightDates && self.highLightDates.count && self.shouldShowHighLightDates) {
-        for (int i = 0; i < self.highLightDates.count; i ++) {
-            NSDate *date = self.highLightDates[i];
+    if (self.defaultSelectedDates && self.defaultSelectedDates.count && self.shouldShowdefaultSelectedDates) {
+        for (int i = 0; i < self.defaultSelectedDates.count; i ++) {
+            NSDate *date = self.defaultSelectedDates[i];
             if ([XZCalendarBrain xzCalendar_compareDate:cell.currentDate withDate:date] == NSOrderedSame) {
-                [self setCell:cell isHighLight:YES];
+                [self setCell:cell isSelected:YES];
                 //  设置当前选择
                 self.lastSelectedIndexPath = indexPath;
             }
         }
-    }
-    // 扩展接口
-    if ([self setCellCanBeHighLight:cell])
-    {
-        [self setCell:cell isHighLight:YES];
     }
 }
 
@@ -192,13 +187,13 @@ UICollectionViewDelegateFlowLayout
     if (indexPath.item < monthInfo.monthBeginWeekDay)
     {
         // 防止复用时为高亮
-        [self setCell:cell isHighLight:NO];
+        [self setCell:cell isSelected:NO];
         cell.dateLabel.text = @"";
     }
     else{
         // 是否为上次选中
         BOOL lastSelected = (indexPath == self.lastSelectedIndexPath);
-        [self setCell:cell isHighLight:lastSelected];
+        [self setCell:cell isSelected:lastSelected];
         
         // 配置当前cell日期
         cell.currentDate = [self.calendarBrain getMonthDayWithMonthFirstDate:monthInfo.monthFirstDate offsetDayLength:(indexPath.item - monthInfo.monthBeginWeekDay)];
@@ -221,21 +216,21 @@ UICollectionViewDelegateFlowLayout
     UICollectionReusableView *reusableview = nil;
     if (kind == UICollectionElementKindSectionHeader){
         UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:UICollectionElementKindSectionHeader forIndexPath:indexPath];
-        // 偷懒没有重新定义一个视图，那就移除吧
-        for (UIView * view in headerView.subviews) {
-            [view removeFromSuperview];
+        // 偷懒没有重新定义一个视图
+        UILabel *monthTitle = (UILabel *)[headerView viewWithTag:1000];
+        if (!monthTitle) {
+            monthTitle = [UILabel new];
+            monthTitle.tag = 1000;
+            monthTitle.textAlignment = NSTextAlignmentLeft;
+            monthTitle.textColor = [UIColor purpleColor];
+            monthTitle.font = [UIFont systemFontOfSize:14];
+            [headerView addSubview:monthTitle];
+            [monthTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(headerView).offset(Kmargin);
+                make.right.equalTo(headerView).offset(-Kmargin);
+                make.centerY.equalTo(headerView);
+            }];
         }
-        UILabel *monthTitle = [UILabel new];
-        monthTitle.textAlignment = NSTextAlignmentLeft;
-        monthTitle.textColor = [UIColor purpleColor];
-        monthTitle.font = [UIFont systemFontOfSize:14];
-        [headerView addSubview:monthTitle];
-        [monthTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(headerView).offset(Kmargin);
-            make.right.equalTo(headerView).offset(-Kmargin);
-            make.centerY.equalTo(headerView);
-        }];
-        
         NSDateFormatter *format = [[NSDateFormatter alloc] init];
         [format setDateFormat:@"yyyy年MM月"];
         XZCalendarViewMonthInfo *monthInfo = self.monthFirstDateArray[indexPath.section];
@@ -261,16 +256,19 @@ UICollectionViewDelegateFlowLayout
     else
     {
         // 设置的高亮日期不再显示
-        self.shouldShowHighLightDates = NO;
+        self.shouldShowdefaultSelectedDates = NO;
         // 取消之前选中状态,设置当前为最后一次选中
         
         if (self.lastSelectedIndexPath) {
             XZCalendarViewCell *lastSelectedCell = (XZCalendarViewCell *)[collectionView cellForItemAtIndexPath:self.lastSelectedIndexPath];
-            [self setCell:lastSelectedCell isHighLight:NO];
+            [self setCell:lastSelectedCell isSelected:NO];
         }
         self.lastSelectedIndexPath = indexPath;
-        [self setCell:cell isHighLight:YES];
-        [self setDidSelectedCell:cell];
+        [self setCell:cell isSelected:YES];
+        // 选中回调
+        if (self.calendarViewDateDidSelected) {
+            self.calendarViewDateDidSelected(cell.currentDate);
+        }
     }
 }
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -284,17 +282,26 @@ UICollectionViewDelegateFlowLayout
 }
 
 #pragma mark - CalendarView Delegate
-// 设置头部视图
 
-// 设置是否高亮
-- (BOOL)setCellCanBeHighLight:(XZCalendarViewCell *)cell
+// 返回这个CalendarView是否可以被选择
+- (BOOL)setCellCanBeSelected:(XZCalendarViewCell *)cell
 {
-    return NO;
+    // 可选
+    if ([XZCalendarBrain xzCalendar_compareDate:cell.currentDate withDate:self.beginDate] != NSOrderedAscending) {
+        cell.dateLabel.textColor = [UIColor blackColor];
+        return YES;
+    }
+    // 不可选
+    else
+    {
+        cell.dateLabel.textColor = [UIColor grayColor];
+        return NO;
+    }
 }
-// 设置cell是否高亮的样式
-- (void)setCell:(XZCalendarViewCell *)cell isHighLight:(BOOL)isHighLight
+// 设置cell是否被选中和没有选中的样式
+- (void)setCell:(XZCalendarViewCell *)cell isSelected:(BOOL)isSelected
 {
-    if (isHighLight) {
+    if (isSelected){
         cell.contentView.backgroundColor = [UIColor greenColor];
         cell.reminderLabel.hidden = NO;
         cell.reminderLabel.text = @"提示";
@@ -303,40 +310,6 @@ UICollectionViewDelegateFlowLayout
     {
         cell.contentView.backgroundColor = [UIColor whiteColor];
         cell.reminderLabel.hidden = YES;
-    }
-}
-// 返回这个CalendarView是否可以被选择
-- (BOOL)setCellCanBeSelected:(XZCalendarViewCell *)cell
-{
-    // 可选
-    if ([XZCalendarBrain xzCalendar_compareDate:cell.currentDate withDate:self.beginDate] != NSOrderedAscending) {
-        [self setCell:cell canSelected:YES];
-        return YES;
-    }
-    // 不可选
-    else
-    {
-       [self setCell:cell canSelected:NO];
-        return NO;
-    }
-}
-// 设置cell是否可以被选中和不可以被选中的样式
-- (void)setCell:(XZCalendarViewCell *)cell canSelected:(BOOL)canSelected
-{
-    if (canSelected){
-        cell.dateLabel.textColor = [UIColor blackColor];
-    }
-    else
-    {
-         cell.dateLabel.textColor = [UIColor grayColor];
-    }
-}
-// 设置cell被选中
-- (void)setDidSelectedCell:(XZCalendarViewCell *)cell
-{
-    // 选中回调
-    if (self.calendarViewDateDidSelected) {
-        self.calendarViewDateDidSelected(cell.currentDate);
     }
 }
 
