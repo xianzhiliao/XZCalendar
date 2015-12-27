@@ -1,21 +1,39 @@
 //
-//  ViewController.m
-//  XZCalendar
+//  XZCalendarSingleSelectVC.m
+//  XZCalendarSingleSelectVC
 //
-//  Created by xianzhiliao on 15/12/18.
-//  Copyright © 2015年 Putao. All rights reserved.
+//  Created by 廖贤志 on 15/12/26.
+//  Copyright © 2015年 LXZ. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "XZCalendarSingleSelectVC.h"
 #import <Masonry/Masonry.h>
 #import "XZCalendarViewCell.h"
 #import "XZCalendarBrain.h"
+#import "NSDate+Category.h"
 
-const CGFloat Kmargin = 15;
-const CGFloat KweekDayHeaderViewHeight = 31;
-const CGFloat KdayMargin = 8;
+static const CGFloat Kmargin = 15;
+static const CGFloat KweekDayHeaderViewHeight = 31;
+static const CGFloat KdayMargin = 8;
 
-@interface ViewController ()
+/** 选中背景 */
+#define KBgColorSelected  COLOR_MAIN
+/** 选中文字 */
+#define KTextColorSelected [UIColor whiteColor]
+/** 不可选文字*/
+#define KTextColorDisabled COLOR_TEXT_SUBTITLE
+/** 不可选背景*/
+#define KBgColorDisabled [UIColor whiteColor]
+/** 可选文字*/
+#define KTextColorEnabled COLOR_TEXT_TITLE
+/** 可选背景*/
+#define KBgColorEnabled [UIColor whiteColor]
+
+#define KTextColorMonthTitle COLOR_TEXT_TITLE
+
+
+@interface XZCalendarSingleSelectVC ()
+
 <
 UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout
@@ -28,8 +46,6 @@ UICollectionViewDelegateFlowLayout
 @property (nonatomic, strong) NSArray *monthFirstDateArray;
 // 星期数组
 @property (nonatomic, strong) NSArray *weekDayNames;
-// 是否显示高亮日期
-@property (nonatomic, assign) BOOL shouldShowdefaultSelectedDates;
 // 最后选中的indexPath
 @property (nonatomic, strong) NSIndexPath *lastSelectedIndexPath;
 @property (nonatomic, strong) UIView *weekDayHeaderView;
@@ -37,26 +53,22 @@ UICollectionViewDelegateFlowLayout
 
 @end
 
-@implementation ViewController
+@implementation XZCalendarSingleSelectVC
 
 #pragma mark - Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.shouldShowdefaultSelectedDates = YES;
+    [self initWithNavBar];
     self.lastSelectedIndexPath =({
         [NSIndexPath indexPathForItem:-1 inSection:-1];
     });
-    
     self.calendarBrain = ({
         XZCalendarBrain *calendarBrain = [XZCalendarBrain new];
         calendarBrain;
     });
-    
     self.daySize = ({
-        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-        CGFloat avgSize = (screenWidth - 2 * Kmargin - 6 * KdayMargin) / 7;
-        CGSizeMake(avgSize, avgSize) ;
+        [[self class]getCalendarDaySize];
     });
     self.weekDayHeaderView = ({
         UIView *weekDayHeaderView = [self getWeekDayHeaderView];
@@ -74,7 +86,7 @@ UICollectionViewDelegateFlowLayout
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
         flowLayout.minimumInteritemSpacing = KdayMargin;
         flowLayout.itemSize = self.daySize;
-        flowLayout.sectionInset = UIEdgeInsetsMake(Kmargin, Kmargin, 0, Kmargin);
+        flowLayout.sectionInset = UIEdgeInsetsMake(Kmargin, Kmargin, Kmargin, Kmargin);
         flowLayout.headerReferenceSize = CGSizeMake(30, 30);
         
         UICollectionView *collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
@@ -86,7 +98,7 @@ UICollectionViewDelegateFlowLayout
         [collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:UICollectionElementKindSectionHeader];
         
         collectionView.backgroundColor = [UIColor whiteColor];
-//        collectionView.opaque = NO;
+        //        collectionView.opaque = NO;
         [self.view addSubview:collectionView];
         [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(self.view);
@@ -99,8 +111,27 @@ UICollectionViewDelegateFlowLayout
     [super didReceiveMemoryWarning];
     
 }
+- (void)dealloc
+{
+    
+}
+- (void)initWithNavBar
+{
+//    self.viewNaviBar.bottomLine.hidden = YES;
+//    [self setNaviBarTitle:@"日期选择"];
+//    self.view.backgroundColor = COLOR_VIEW_BACKGROUND_GRAY;
+}
 
 #pragma mark - Private Method
++ (CGSize)getCalendarDaySize
+{
+    CGSize size = ({
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        CGFloat avgSize = (screenWidth - 2 * Kmargin - 6 * KdayMargin) / 7;
+        CGSizeMake(avgSize, avgSize) ;
+    });
+    return size;
+}
 
 // 要展示所有月份的月份信息
 - (NSArray *)monthFirstDateArray
@@ -130,19 +161,19 @@ UICollectionViewDelegateFlowLayout
 - (UIView *)getWeekDayHeaderView
 {
     UIView *weekDayHeaderView = [UIView new];
-    weekDayHeaderView.backgroundColor = [UIColor whiteColor];
+    weekDayHeaderView.backgroundColor = COLOR_NAVOGATION_BG;
     for (int i = 0; i < self.weekDayNames.count; i ++) {
         UILabel *weekDay = [[UILabel alloc]initWithFrame:CGRectMake(Kmargin + i *KdayMargin + i * self.daySize.width, 0, self.daySize.width, KweekDayHeaderViewHeight)];
         weekDay.text = self.weekDayNames[i];
         if (i == 0 || i == 6) {
-            weekDay.textColor = [UIColor grayColor];
+            weekDay.textColor = COLOR_TEXT_SUBTITLE;
         }
         else
         {
-            weekDay.textColor = [UIColor blackColor];
+            weekDay.textColor = COLOR_TEXT_TITLE;
         }
         weekDay.font = [UIFont systemFontOfSize:14];
-        weekDay.backgroundColor = [UIColor redColor];
+        weekDay.backgroundColor = [UIColor clearColor];
         weekDay.textAlignment = NSTextAlignmentCenter;
         [weekDayHeaderView addSubview:weekDay];
     }
@@ -150,24 +181,23 @@ UICollectionViewDelegateFlowLayout
     lineTop.backgroundColor = [UIColor colorWithRed:178.0 / 225.0 green:178.0 / 225.0 blue:178.0 / 225.0 alpha:1.0];
     [weekDayHeaderView addSubview:lineTop];
     [lineTop mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weekDayHeaderView.mas_bottom);
+        make.bottom.equalTo(weekDayHeaderView);
         make.left.right.equalTo(weekDayHeaderView);
-        make.height.mas_equalTo(1);
+        make.height.mas_equalTo(LINE_HEIGHT);
     }];
     return weekDayHeaderView;
 }
 // 判断是否当前高亮
 - (void)setCellCanBeHighLight:(XZCalendarViewCell *)cell indexPath:(NSIndexPath *)indexPath
 {
-    if (self.defaultSelectedDates && self.defaultSelectedDates.count && self.shouldShowdefaultSelectedDates) {
-        for (int i = 0; i < self.defaultSelectedDates.count; i ++) {
-            NSDate *date = self.defaultSelectedDates[i];
-            if ([XZCalendarBrain xzCalendar_compareDate:cell.currentDate withDate:date] == NSOrderedSame) {
-                [self setCell:cell isSelected:YES];
-                //  设置当前选择
-                self.lastSelectedIndexPath = indexPath;
-            }
+    if (self.defaultSelectedDate) {
+        NSDate *date = self.defaultSelectedDate;
+        if ([XZCalendarBrain xzCalendar_compareDate:cell.currentDate withDate:date] == NSOrderedSame) {
+            [self setCell:cell isSelected:YES];
+            //  设置当前选择
+            self.lastSelectedIndexPath = indexPath;
         }
+        
     }
 }
 
@@ -194,16 +224,32 @@ UICollectionViewDelegateFlowLayout
         // 是否为上次选中
         BOOL lastSelected = (indexPath == self.lastSelectedIndexPath);
         [self setCell:cell isSelected:lastSelected];
-        
         // 配置当前cell日期
         cell.currentDate = [self.calendarBrain getMonthDayWithMonthFirstDate:monthInfo.monthFirstDate offsetDayLength:(indexPath.item - monthInfo.monthBeginWeekDay)];
-        
-        // 设置当前设置的高亮日期
-        [self setCellCanBeHighLight:cell indexPath:indexPath];
-        
         // 设置是否可选的样式
         [self setCellCanBeSelected:cell];
-        cell.dateLabel.text = [NSString stringWithFormat:@"%@",@(indexPath.item + 1 - monthInfo.monthBeginWeekDay)];
+        // 设置当前设置的高亮日期
+        [self setCellCanBeHighLight:cell indexPath:indexPath];
+        // 设置显示文字
+        if ([cell.currentDate isToday]) {
+            cell.dateLabel.font = [UIFont systemFontOfSize:FONTSIZE_SUBTITLE];
+            cell.dateLabel.text = @"今天";
+        }
+        else if ([cell.currentDate isTomorrow])
+        {
+            cell.dateLabel.font = [UIFont systemFontOfSize:FONTSIZE_SUBTITLE];
+            cell.dateLabel.text = @"明天";
+        }
+        else if ([cell.currentDate isAfterTomorrow])
+        {
+            cell.dateLabel.font = [UIFont systemFontOfSize:FONTSIZE_SUBTITLE];
+            cell.dateLabel.text = @"后天";
+        }
+        else
+        {
+           cell.dateLabel.font = [UIFont systemFontOfSize:FONTSIZE_TITLE];
+           cell.dateLabel.text = [NSString stringWithFormat:@"%@",@(indexPath.item + 1 - monthInfo.monthBeginWeekDay)];
+        }
     }
     return cell;
 }
@@ -216,14 +262,39 @@ UICollectionViewDelegateFlowLayout
     UICollectionReusableView *reusableview = nil;
     if (kind == UICollectionElementKindSectionHeader){
         UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:UICollectionElementKindSectionHeader forIndexPath:indexPath];
+        headerView.backgroundColor = COLOR_VIEW_BACKGROUND_GRAY;
         // 偷懒没有重新定义一个视图
+        
+        UIView *lineTop = [headerView viewWithTag:998];
+        if (!lineTop) {
+            lineTop = [UIView new];
+            lineTop.backgroundColor = COLOR_LINE;
+            [headerView addSubview:lineTop];
+            [lineTop mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(headerView);
+                make.left.right.equalTo(headerView);
+                make.height.mas_equalTo(LINE_HEIGHT);
+            }];
+        }
+        UIView *lineBottom = [headerView viewWithTag:999];
+        if (!lineBottom) {
+            lineBottom = [UIView new];
+            lineBottom.backgroundColor = COLOR_LINE;
+            [headerView addSubview:lineBottom];
+            [lineBottom mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.bottom.equalTo(headerView);
+                make.left.right.equalTo(headerView);
+                make.height.mas_equalTo(LINE_HEIGHT);
+            }];
+        }
+        
         UILabel *monthTitle = (UILabel *)[headerView viewWithTag:1000];
         if (!monthTitle) {
             monthTitle = [UILabel new];
             monthTitle.tag = 1000;
             monthTitle.textAlignment = NSTextAlignmentLeft;
-            monthTitle.textColor = [UIColor purpleColor];
-            monthTitle.font = [UIFont systemFontOfSize:14];
+            monthTitle.textColor = KTextColorMonthTitle;
+            monthTitle.font = [UIFont systemFontOfSize:FONTSIZE_SUBTITLE];
             [headerView addSubview:monthTitle];
             [monthTitle mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(headerView).offset(Kmargin);
@@ -236,8 +307,6 @@ UICollectionViewDelegateFlowLayout
         XZCalendarViewMonthInfo *monthInfo = self.monthFirstDateArray[indexPath.section];
         NSString *dateString = [format stringFromDate:monthInfo.monthFirstDate];
         monthTitle.text = dateString;
-        
-        headerView.backgroundColor = [UIColor grayColor];
         reusableview = headerView;
     }
     return reusableview;
@@ -256,9 +325,8 @@ UICollectionViewDelegateFlowLayout
     else
     {
         // 设置的高亮日期不再显示
-        self.shouldShowdefaultSelectedDates = NO;
+        self.defaultSelectedDate = cell.currentDate;
         // 取消之前选中状态,设置当前为最后一次选中
-        
         if (self.lastSelectedIndexPath) {
             XZCalendarViewCell *lastSelectedCell = (XZCalendarViewCell *)[collectionView cellForItemAtIndexPath:self.lastSelectedIndexPath];
             [self setCell:lastSelectedCell isSelected:NO];
@@ -286,15 +354,19 @@ UICollectionViewDelegateFlowLayout
 // 返回这个CalendarView是否可以被选择
 - (BOOL)setCellCanBeSelected:(XZCalendarViewCell *)cell
 {
+    NSDate *endDate = self.endDate;
+    [XZCalendarBrain xzCalendar_DatewithDate:endDate];
     // 可选
-    if ([XZCalendarBrain xzCalendar_compareDate:cell.currentDate withDate:self.beginDate] != NSOrderedAscending) {
-        cell.dateLabel.textColor = [UIColor blackColor];
+    if ([XZCalendarBrain xzCalendar_compareDate:cell.currentDate withDate:self.beginDate] != NSOrderedAscending && [XZCalendarBrain xzCalendar_compareDate:endDate withDate:cell.currentDate] != NSOrderedAscending) {
+        cell.dateLabel.textColor = KTextColorEnabled;
+        cell.contentView.backgroundColor = KBgColorEnabled;
         return YES;
     }
     // 不可选
     else
     {
-        cell.dateLabel.textColor = [UIColor grayColor];
+        cell.dateLabel.textColor = KTextColorDisabled;
+        cell.contentView.backgroundColor = KBgColorDisabled;
         return NO;
     }
 }
@@ -302,15 +374,23 @@ UICollectionViewDelegateFlowLayout
 - (void)setCell:(XZCalendarViewCell *)cell isSelected:(BOOL)isSelected
 {
     if (isSelected){
-        cell.contentView.backgroundColor = [UIColor greenColor];
-        cell.reminderLabel.hidden = NO;
-        cell.reminderLabel.text = @"提示";
+        cell.contentView.backgroundColor = KBgColorSelected;
+        cell.dateLabel.textColor = KTextColorSelected;
+        if (self.remindText && self.remindText.length) {
+            cell.reminderLabel.hidden = NO;
+            cell.reminderLabel.text = self.remindText;
+        }
+        
     }
     else
     {
         cell.contentView.backgroundColor = [UIColor whiteColor];
-        cell.reminderLabel.hidden = YES;
+        cell.dateLabel.textColor = KTextColorEnabled;
+        if (self.remindText && self.remindText.length) {
+            cell.reminderLabel.hidden = YES;
+        }
     }
 }
+
 
 @end

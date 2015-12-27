@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DimensMacros.h"
+#import "NSDate+Category.h"
 
 typedef struct XZCalendarViewCellStyle
 {
