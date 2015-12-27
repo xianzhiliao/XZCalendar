@@ -18,6 +18,8 @@
 @property (nonatomic, strong) UIButton *btnSingleSelectedDate;
 @property (nonatomic, strong) UIButton *btnRoundSelectedDate;
 @property (nonatomic, strong) NSDate *curentDate;
+@property (nonatomic, strong) NSDate *goDate;
+@property (nonatomic, strong) NSDate *backDate;
 
 @end
 
@@ -27,6 +29,12 @@
     [super viewDidLoad];
     self.curentDate = ({
         [NSDate date];
+    });
+    self.goDate = ({
+        [NSDate date];
+    });
+    self.backDate = ({
+       [NSDate dateWithTimeInterval:24 * 3600 sinceDate:[NSDate date]];
     });
     self.lblSingleSelectedDateDesc = ({
         UILabel *label = [UILabel new];
@@ -119,12 +127,14 @@
     vc.beginDate = [NSDate date];
     vc.endDate = [NSDate dateWithTimeIntervalSinceNow:24 * 3600 * 365];
     vc.showMonthCount = 13;
-    vc.goDate = [NSDate date];
-    vc.backDate = [NSDate dateWithTimeInterval:24 * 3600 sinceDate:[NSDate date]];
+    vc.goDate = self.goDate;
+    vc.backDate = self.backDate;
     vc.goDateRemindText = @"出发";
     vc.backDateRemindText = @"返回";
     vc.calendarViewDateDidSelected = ^(NSDate *goDate,NSDate *backDate)
     {
+        self.goDate = goDate;
+        self.backDate = backDate;
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy年-MM月-dd日"];
         NSString *goDateStr = [dateFormatter stringFromDate:goDate];
