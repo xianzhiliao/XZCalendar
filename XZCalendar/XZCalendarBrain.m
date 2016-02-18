@@ -17,7 +17,7 @@
         self.monthBeginWeekDay = monthBeginWeekDay;
         self.monthLength = monthLength;
         self.monthRemainDays = monthRemainDays;
-        self.monthRemainDays = monthCalendarViewRows;
+        self.monthCalendarViewRows = monthCalendarViewRows;
     }
     return self;
 }
