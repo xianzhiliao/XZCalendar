@@ -232,11 +232,12 @@ UICollectionViewDelegateFlowLayout
     XZCalendarViewMonthInfo *monthInfo = self.monthFirstDateArray[indexPath.section];
     if (indexPath.item < monthInfo.monthBeginWeekDay)
     {
-        // 防止复用时为高亮
-        [self setCell:cell isSelected:NO];
-        cell.dateLabel.text = @"";
+        cell.hidden = YES;
     }
     else{
+        cell.hidden = NO;
+        // 配置当前cell日期
+        cell.currentDate = [self.calendarBrain getMonthDayWithMonthFirstDate:monthInfo.monthFirstDate offsetDayLength:(indexPath.item - monthInfo.monthBeginWeekDay)];
         // 是否为选中
         BOOL goDateSelected = (indexPath == self.goDateSelectedIndexPath);
         if (goDateSelected) {
@@ -246,16 +247,6 @@ UICollectionViewDelegateFlowLayout
         if (backDateSelected) {
             self.remindText = @"返回";
         }
-        BOOL lastSelected = (goDateSelected || backDateSelected);
-        [self setCell:cell isSelected:lastSelected];
-        
-        
-        // 配置当前cell日期
-        cell.currentDate = [self.calendarBrain getMonthDayWithMonthFirstDate:monthInfo.monthFirstDate offsetDayLength:(indexPath.item - monthInfo.monthBeginWeekDay)];
-        // 设置是否可选的样式
-        [self setCellCanBeSelected:cell];
-        // 设置当前设置的高亮日期
-        [self setCellCanBeHighLight:cell indexPath:indexPath];
         // 设置显示文字
         if ([cell.currentDate isToday]) {
             cell.dateLabel.font = [UIFont systemFontOfSize:FONTSIZE_SUBTITLE];
@@ -276,6 +267,14 @@ UICollectionViewDelegateFlowLayout
             cell.dateLabel.font = [UIFont systemFontOfSize:FONTSIZE_TITLE];
             cell.dateLabel.text = [NSString stringWithFormat:@"%@",@(indexPath.item + 1 - monthInfo.monthBeginWeekDay)];
         }
+        // 设置中国农历显示
+        cell.reminderLabel.text = @"公历";
+        BOOL lastSelected = (goDateSelected || backDateSelected);
+        [self setCell:cell isSelected:lastSelected];
+        // 设置是否可选的样式
+        [self setCellCanBeSelected:cell];
+        // 设置当前设置的高亮日期
+        [self setCellCanBeHighLight:cell indexPath:indexPath];
     }
     return cell;
 }
@@ -442,7 +441,7 @@ UICollectionViewDelegateFlowLayout
         cell.contentView.backgroundColor = KBgColorSelected;
         cell.dateLabel.textColor = KTextColorSelected;
         if (self.remindText && self.remindText.length) {
-            cell.reminderLabel.hidden = NO;
+//            cell.reminderLabel.hidden = NO;
             cell.reminderLabel.text = self.remindText;
         }
         
@@ -451,9 +450,9 @@ UICollectionViewDelegateFlowLayout
     {
         cell.contentView.backgroundColor = [UIColor whiteColor];
         cell.dateLabel.textColor = KTextColorEnabled;
-        if (self.remindText && self.remindText.length) {
-            cell.reminderLabel.hidden = YES;
-        }
+//        if (self.remindText && self.remindText.length) {
+//            cell.reminderLabel.hidden = YES;
+//        }
     }
 }
 

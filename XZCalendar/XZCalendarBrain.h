@@ -23,7 +23,8 @@
 
 /** 获得在XZCalendarBrain中的日期 */
 + (NSDate *)xzCalendar_DatewithDate:(NSDate *)date;
-
+/** 获得在XZCalendarBrain中的农历日期 */
++ (NSDate *)xzCalendar_chineseDatewithDate:(NSDate *)date;
 /** 用XZCalendarBrain中的NSCalendar进行日期比较 */
 + (NSComparisonResult)xzCalendar_compareDate:(NSDate *)date withDate:(NSDate *)otherDate;
 

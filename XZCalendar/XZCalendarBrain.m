@@ -85,7 +85,12 @@ static NSCalendarUnit _calendarUnit;
     date = [_calendar dateFromComponents:components];
     return date;
 }
-
+/** 获得在XZCalendarBrain中的公历转农历日期 */
++ (NSDate *)xzCalendar_chineseDatewithDate:(NSDate *)date
+{
+    // 借助第三方算法计算
+    return date;
+}
 /** 用XZCalendarBrain中的NSCalendar进行日期比较 */
 + (NSComparisonResult)xzCalendar_compareDate:(NSDate *)date withDate:(NSDate *)otherDate
 {
@@ -93,5 +98,4 @@ static NSCalendarUnit _calendarUnit;
     otherDate = [[self class]xzCalendar_DatewithDate:otherDate];
     return [date compare:otherDate];
 }
-
 @end
