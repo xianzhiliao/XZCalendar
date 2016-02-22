@@ -268,7 +268,7 @@ UICollectionViewDelegateFlowLayout
             cell.dateLabel.text = [NSString stringWithFormat:@"%@",@(indexPath.item + 1 - monthInfo.monthBeginWeekDay)];
         }
         // 设置中国农历显示
-        cell.reminderLabel.text = @"公历";
+        cell.reminderLabel.text = [XZCalendarBrain chineseCalenderStringWithDate:cell.currentDate];
         BOOL lastSelected = (goDateSelected || backDateSelected);
         [self setCell:cell isSelected:lastSelected];
         // 设置是否可选的样式
