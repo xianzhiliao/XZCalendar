@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65ECB01D1C7AF3F7005B672A /* LunarCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ECB01C1C7AF3F7005B672A /* LunarCalendar.m */; };
 		65F83B4C1C2D45AE00C66BCD /* SampleDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F83B4B1C2D45AE00C66BCD /* SampleDemoViewController.m */; };
 		C7FDE91886BABB58E925641F /* libPods-XZCalendar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE4EDCB73A7ADC3608D325A1 /* libPods-XZCalendar.a */; };
-		DDD8753A1C2FE426008AB5CA /* XZCalendarSingleSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD875361C2FE426008AB5CA /* XZCalendarSingleSelectVC.m */; settings = {ASSET_TAGS = (); }; };
-		DDD8753B1C2FE426008AB5CA /* XZCalendarRoundSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD875381C2FE426008AB5CA /* XZCalendarRoundSelectVC.m */; settings = {ASSET_TAGS = (); }; };
-		DDD8753F1C2FE7C4008AB5CA /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD8753E1C2FE7C4008AB5CA /* NSDate+Category.m */; settings = {ASSET_TAGS = (); }; };
+		DDD8753A1C2FE426008AB5CA /* XZCalendarSingleSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD875361C2FE426008AB5CA /* XZCalendarSingleSelectVC.m */; };
+		DDD8753B1C2FE426008AB5CA /* XZCalendarRoundSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD875381C2FE426008AB5CA /* XZCalendarRoundSelectVC.m */; };
+		DDD8753F1C2FE7C4008AB5CA /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD8753E1C2FE7C4008AB5CA /* NSDate+Category.m */; };
 		DDDD042E1C285047009D05C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD042D1C285047009D05C0 /* main.m */; };
 		DDDD04311C285047009D05C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDD04301C285047009D05C0 /* AppDelegate.m */; };
 		DDDD04371C285047009D05C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDDD04351C285047009D05C0 /* Main.storyboard */; };
@@ -43,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		1EA1C6912D40BA3625BDC2F5 /* Pods-XZCalendar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XZCalendar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XZCalendar/Pods-XZCalendar.debug.xcconfig"; sourceTree = "<group>"; };
+		65ECB01B1C7AF3F7005B672A /* LunarCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LunarCalendar.h; sourceTree = "<group>"; };
+		65ECB01C1C7AF3F7005B672A /* LunarCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LunarCalendar.m; sourceTree = "<group>"; };
 		65F83B4A1C2D45AE00C66BCD /* SampleDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleDemoViewController.h; sourceTree = "<group>"; };
 		65F83B4B1C2D45AE00C66BCD /* SampleDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleDemoViewController.m; sourceTree = "<group>"; };
 		CBBE516B2FD490C3CBE2BF81 /* Pods-XZCalendar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XZCalendar.release.xcconfig"; path = "Pods/Target Support Files/Pods-XZCalendar/Pods-XZCalendar.release.xcconfig"; sourceTree = "<group>"; };
@@ -151,6 +154,8 @@
 				DDD875381C2FE426008AB5CA /* XZCalendarRoundSelectVC.m */,
 				DDDD04641C28506B009D05C0 /* XZCalendarBrain.h */,
 				DDDD04651C28506B009D05C0 /* XZCalendarBrain.m */,
+				65ECB01B1C7AF3F7005B672A /* LunarCalendar.h */,
+				65ECB01C1C7AF3F7005B672A /* LunarCalendar.m */,
 				DDDD04681C28506B009D05C0 /* XZCalendarViewCell.h */,
 				DDDD04691C28506B009D05C0 /* XZCalendarViewCell.m */,
 				DDD8753C1C2FE781008AB5CA /* DimensMacros.h */,
@@ -379,6 +384,7 @@
 				DDD8753B1C2FE426008AB5CA /* XZCalendarRoundSelectVC.m in Sources */,
 				DDD8753F1C2FE7C4008AB5CA /* NSDate+Category.m in Sources */,
 				DDD8753A1C2FE426008AB5CA /* XZCalendarSingleSelectVC.m in Sources */,
+				65ECB01D1C7AF3F7005B672A /* LunarCalendar.m in Sources */,
 				DDDD046B1C28506B009D05C0 /* XZCalendarBrain.m in Sources */,
 				DDDD046D1C28506B009D05C0 /* XZCalendarViewCell.m in Sources */,
 				65F83B4C1C2D45AE00C66BCD /* SampleDemoViewController.m in Sources */,
